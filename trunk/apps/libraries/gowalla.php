@@ -12,9 +12,9 @@
 			$url = 'http://api.gowalla.com/spots?lat=' . $latitude . '&lng=' . $longitude . '&radius=' . $radius . '&category_id=7';
 			
 			// Save coordinates
-			$this->latitude = $lat;
-			$this->longitude = $lng;
-			$this->radius = $rad;
+			$this->latitude = $latitude;
+			$this->longitude = $longitude;
+			$this->radius = $radius;
 			
 			// Get spots with cURL
 			$curl = curl_init();
