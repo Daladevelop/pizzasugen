@@ -6,11 +6,11 @@
 		$foursquare = new Foursquare($latitude, $longitude, $radius);
 		
 		if($gowalla->getCount() > 0) {
-			array_merge($spots, $gowalla->getSpots());
+			$spots = array_merge($spots, $gowalla->getSpots());
 		}
 		
 		if($foursquare->getCount() > 0) {
-			array_merge($spots, $foursquare->getSpots());
+			$spots = array_merge($spots, $foursquare->getSpots());
 		}
 		
 		return $spots;
