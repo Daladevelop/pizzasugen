@@ -35,18 +35,20 @@
 			
 			// Extact spots in category "Pizza"
 			$response = json_decode($data);
-			$pizza = array();
+			$spots = array();
 			
 			if(count($response->spots) > 0) {
 				foreach($response->spots as $spot) {
 					if($spot->spot_categories[0]->name == 'Pizza') {
-						$pizza[] = $spot;
+						$spots[] = new Spot($spot->name, $spot->description, $spot->lat, $spot->lng, $spot->radius_meters, 'http://gowalla.com' . $spot->url, $spot->checkins_count);
 					}
 				}
 			}
 			
 			// Save number of extracted spots
-			$this->number = count($pizza);
+			$this->number = count($spots);
+			
+			$this->spots = $spots;
 		}
 		
 		public function getCount() {

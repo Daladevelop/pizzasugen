@@ -27,7 +27,8 @@
 	</div>
 	<?php
 		/*$gowalla = new Gowalla(60.6061, 15.6333, 5000);
-		echo $gowalla->number();*/
+		$spots = $gowalla->getSpots();
+		print_r($spots);*/
 	?>
 </body>
 

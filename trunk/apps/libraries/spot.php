@@ -1,14 +1,16 @@
 <?php
 	class Spot {
 		private $name;
+		private $description;
 		private $latitude;
 		private $longitude;
 		private $distance;
 		private $url;
 		private $checkins;
 		
-		public function __construct($name, $latitude, $longitude, $distance, $url, $checkins) {
+		public function __construct($name, $description, $latitude, $longitude, $distance, $url, $checkins) {
 			$this->name = $name;
+			$this->description = $description;
 			$this->latitude = $latitude;
 			$this->longitude = $longitude;
 			$this->distance = $distance;
@@ -18,6 +20,10 @@
 		
 		public function getName() {
 			return $this->name;
+		}
+		
+		public function getDescription() {
+			return $this->description;
 		}
 		
 		public function getLatitude() {
