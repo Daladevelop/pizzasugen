@@ -17,6 +17,19 @@
 		/*
 			Display a list of nearby pizza places if GET['sugen'] is set.
 		*/
+		if (isset($_GET['sugen'])) {
+			$long = $_GET['long'];
+			$lat = $_GET['lat'];
+			$spots = find_spots($lat, $long);
+			
+			echo '<ul>';
+			
+			foreach($spots as $spot) {
+				echo '<li class="pizzeria"><a href="'. $spot->getUrl .'">'. $spot->getName .'</a></li>';
+			}
+			
+			echo '</ul>';
+		}
 	?>
 	
 	<div class="section">
