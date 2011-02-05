@@ -6,7 +6,7 @@
 		private $number;
 		private $spots;
 		
-		function __construct($latitude, $longitude, $radius) {
+		function __construct($latitude, $longitude, $radius = DEFAULT_RADIUS) {
 			// Initial values
 			$this->number = 0;
 			$this->spots = false;

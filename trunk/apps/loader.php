@@ -8,5 +8,5 @@
 	require_once('libraries/iSpotProvider.php');
 	require_once('libraries/gowalla.php');
 	require_once('libraries/foursquare.php');
-	
+	require_once('functions.php');
 ?>
