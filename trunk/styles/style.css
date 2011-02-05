@@ -1,0 +1,10 @@
+body {
+	width: 480px;
+	margin: 0 auto;
+	font-family: Verdana;
+	font-size: 13px;
+}
+
+.section {
+	text-align: justify;
+}

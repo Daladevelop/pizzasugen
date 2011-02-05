@@ -11,9 +11,23 @@
 </head>
 
 <body>
+	<h1>#Pizzasugen?</h1>
+	<hr />
 	<?php
-		$gowalla = new Gowalla(60.6061, 15.6333, 5000);
-		echo $gowalla->number();
+		/*
+			Display a list of nearby pizza places if GET['sugen'] is set.
+		*/
+	?>
+	
+	<div class="section">
+		<h2>Är du pizzasugen?</h2>
+		Skicka ett tweet med hash-taggen <strong>#pizzasugen</strong> och skicka med
+		geolocation-data så kommer du få ett svar som talar om vilka
+		pizzerior som finns i närheten.
+	</div>
+	<?php
+		/*$gowalla = new Gowalla(60.6061, 15.6333, 5000);
+		echo $gowalla->number();*/
 	?>
 </body>
 
