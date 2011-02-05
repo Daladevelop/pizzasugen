@@ -22,13 +22,17 @@
 			$lat = $_GET['lat'];
 			$spots = find_spots($lat, $long);
 			
-			echo '<ul>';
+			if (count($spots)>0) {
+				echo '<ul>';
 			
-			foreach($spots as $spot) {
-				echo '<li class="pizzeria"><a href="'. $spot->getUrl .'">'. $spot->getName .'</a></li>';
+				foreach($spots as $spot) {
+					echo '<li class="pizzeria"><a href="'. $spot->getURL() .'">'. $spot->getName() .'</a></li>';
+				}
+			
+				echo '</ul>';
+			} else {
+				echo 'Kunde inte hitta några pizzerior i din närhet. Ta en banan, och var glad.';
 			}
-			
-			echo '</ul>';
 		}
 	?>
 	
