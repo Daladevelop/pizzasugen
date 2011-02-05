@@ -17,6 +17,9 @@ class Foursquare {
     return count($this->spots);
   }
   
+  /**
+   * @returns array   An array of Spot items
+   */
   function getSpots() {
     return $this->spots;
   }
@@ -48,7 +51,15 @@ class Foursquare {
           
           if ($category->name == "Pizza") {
             
-            $this->spots[] = $category->name;            
+            $this->spots[] = new Spot($item->name, 
+                              $item->name, 
+                              $item->location->lat, 
+                              $item->location->lng, 
+                              $item->location->distance, 
+                              "http://foursquare.com/venue/" . $item->id,
+                              $item->stats->checkinsCount);
+                              
+            break;
           }   
         }
       }

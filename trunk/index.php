@@ -29,6 +29,13 @@
 		/*$gowalla = new Gowalla(60.6061, 15.6333, 5000);
 		$spots = $gowalla->getSpots();
 		print_r($spots);*/
+		
+		/*
+		$foursquare = new Foursquare(60.6061, 15.6333, 5000);
+    echo "<pre>";
+    var_dump($foursquare->getSpots());
+    echo "</pre>";
+     */
 	?>
 </body>
 
