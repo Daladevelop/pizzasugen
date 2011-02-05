@@ -6,6 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width" />
     <title>Pizzasugen</title>
     <link rel="stylesheet" href="styles/style.css" />
 </head>
@@ -23,10 +24,11 @@
 			$spots = find_spots($lat, $long);
 			
 			if (count($spots)>0) {
-				echo '<ul>';
+				echo 'Vi hittade ' . count($spots) . ' pizzerior i din närhet.
+				<ul>';
 			
 				foreach($spots as $spot) {
-					echo '<li class="pizzeria"><a href="'. $spot->getURL() .'">'. $spot->getName() .'</a></li>';
+					echo '<li class="pizzeria"><a href="'. $spot->getURL() .'">'. $spot->getName() .'</a>, cirka ' . $spot->getDistance() . ' meter ifrån dig.</li>';
 				}
 			
 				echo '</ul>';
