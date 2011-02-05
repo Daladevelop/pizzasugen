@@ -7,6 +7,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Pizzasugen</title>
+    <link rel="stylesheet" href="styles/style.css" />
 </head>
 
 <body>
