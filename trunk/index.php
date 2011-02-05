@@ -13,7 +13,8 @@
 
 <body>
 	<h1>#Pizzasugen?</h1>
-	<hr />
+	
+	<div class="section result">
 	<?php
 		/*
 			Display a list of nearby pizza places if GET['sugen'] is set.
@@ -37,6 +38,7 @@
 			}
 		}
 	?>
+	</div>
 	
 	<div class="section">
 		<h2>Är du pizzasugen?</h2>

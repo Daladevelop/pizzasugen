@@ -31,10 +31,11 @@ class Foursquare {
             $longitude,  
             $this->accessToken);
                   
-    $ch = curl_init($url);
+    $ch = curl_init();
     
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_URL, $url);
     
     $data = curl_exec($ch);
 	
