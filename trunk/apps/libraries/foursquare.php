@@ -7,7 +7,7 @@
  * @todo Lots. 
  */
 
-class Foursquare implements iSpotProvider {
+class Foursquare {
   
   private $accessToken = FOURSQUARE_ACCESS_TOKEN;
   

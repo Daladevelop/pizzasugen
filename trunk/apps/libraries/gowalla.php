@@ -3,12 +3,15 @@
 		private $latitude;
 		private $longitude;
 		private $radius;
-		
 		private $number;
+		private $spots;
 		
 		function __construct($latitude, $longitude, $radius) {
+			// Initial values
 			$this->number = 0;
+			$this->spots = false;
 			
+			// Set Gowalla url
 			$url = 'http://api.gowalla.com/spots?lat=' . $latitude . '&lng=' . $longitude . '&radius=' . $radius . '&category_id=7';
 			
 			// Save coordinates
@@ -46,8 +49,12 @@
 			$this->number = count($pizza);
 		}
 		
-		function number() {
+		public function getCount() {
 			return $this->number;
+		}
+		
+		public function getSpots() {
+			return $this->spots;
 		}
 	}
 ?>
