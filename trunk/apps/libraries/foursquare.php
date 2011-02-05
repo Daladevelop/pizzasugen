@@ -34,9 +34,10 @@ class Foursquare {
     $ch = curl_init($url);
     
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     
     $data = curl_exec($ch);
-        
+	
     $data = @json_decode($data);
       
     if (!is_object($data) || $data->meta->code != 200) {
