@@ -13,9 +13,7 @@
 		$sql = 'SELECT * FROM ' . DB_PREFIX . 'pizzasugen WHERE `key`=\''.$key.'\' LIMIT 1';
 		$result = mysql_query($sql);
 		$result = mysql_fetch_object($result);
-		$spots = $result->spots;
-		
-		if(!file_exists($file) || filemtime($file) - time() > 86400) {
+		if (($result->key == "") || (strtotime($result->time) - time() > 86400)) {
 			$spots = find_spots($latitude, $longitude);
 			
 			$html = '<div class="section result">';
@@ -42,8 +40,12 @@
 			fwrite($handle, $header . $html . $footer );
 			
 			$numberofspots = count($spots);
+			
+			$sql = 'INSERT INTO  `'.DB_NAME.'`.`'.DB_PREFIX.'pizzasugen` (`key`, `spots`, `time`) VALUES (\''.$key.'\', \''.$numberofspots.'\', CURRENT_TIMESTAMP)';
+			mysql_query($sql);
+			
 		} else {
-			$numberofspots = $spots;
+			$numberofspots = $result->spots;
 		} 
 		
 		mysql_close();
