@@ -22,7 +22,7 @@
 				$html .= 'Vi hittade ' . count($spots) . ' pizzerior i din närhet.<ul>';
 			
 				foreach($spots as $spot) {
-					$html .= '<li class="pizzeria"><a href="'. $spot->getURL() .'">'. htmlentities($spot->getName()) .'</a>, cirka ' . $spot->getDistance() . ' meter ifrån dig.</li>';
+					$html .= '<li class="pizzeria"><a href="'. $spot->getURL() .'">'. htmlspecialchars($spot->getName()) .'</a>, cirka ' . $spot->getDistance() . ' meter ifrån dig.</li>';
 				}
 			
 				$html .= '</ul>';

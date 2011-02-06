@@ -14,32 +14,6 @@
 <body>
 	<h1>#Pizzasugen?</h1>
 	
-	<div class="section result">
-	<?php
-		/*
-			Display a list of nearby pizza places if GET['sugen'] is set.
-		*/
-		if (isset($_GET['sugen'])) {
-			$long = $_GET['lng'];
-			$lat = $_GET['lat'];
-			$spots = find_spots($lat, $long);
-			
-			if (count($spots)>0) {
-				echo 'Vi hittade ' . count($spots) . ' pizzerior i din närhet.
-				<ul>';
-			
-				foreach($spots as $spot) {
-					echo '<li class="pizzeria"><a href="'. $spot->getURL() .'">'. $spot->getName() .'</a>, cirka ' . $spot->getDistance() . ' meter ifrån dig.</li>';
-				}
-			
-				echo '</ul>';
-			} else {
-				echo 'Kunde inte hitta några pizzerior i din närhet. Ta en banan, och var glad.';
-			}
-		}
-	?>
-	</div>
-	
 	<div class="section">
 		<h2>Är du pizzasugen?</h2>
 		Skicka ett tweet med hash-taggen <strong>#pizzasugen</strong> och skicka med
