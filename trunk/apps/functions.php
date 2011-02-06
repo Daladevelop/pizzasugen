@@ -24,7 +24,7 @@
     				<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     				<meta name="viewport" content="width=device-width" />
 					<title>Pizzasugen</title>
-					<link rel="stylesheet" href="styles/style.css" />
+					<link rel="stylesheet" href="../styles/style.css" />
 				</head>
 			<body>
 				<h1>#Pizzasugen?</h1>
@@ -42,5 +42,6 @@
 			</div>
 		</body>
 		</html>';
+		return $html;
 	}
 ?>
