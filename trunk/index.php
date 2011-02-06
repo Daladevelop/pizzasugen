@@ -20,7 +20,7 @@
 			Display a list of nearby pizza places if GET['sugen'] is set.
 		*/
 		if (isset($_GET['sugen'])) {
-			$long = $_GET['long'];
+			$long = $_GET['lng'];
 			$lat = $_GET['lat'];
 			$spots = find_spots($lat, $long);
 			
