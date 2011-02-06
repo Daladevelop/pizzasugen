@@ -13,7 +13,7 @@
 		$sql = 'SELECT * FROM ' . DB_PREFIX . 'pizzasugen WHERE `key`=\''.$key.'\' LIMIT 1';
 		$result = mysql_query($sql);
 		$result = mysql_fetch_object($result);
-		if (($result->key == "") || (strtotime($result->time) - time() > 86400)) {
+		if (( !method_exists($result, 'key')) || (strtotime($result->time) - time() > 86400)) {
 			$spots = find_spots($latitude, $longitude);
 			
 			$html = '<div class="section result">';
