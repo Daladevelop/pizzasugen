@@ -10,9 +10,10 @@
 		
 		mysql_connect(DB_HOST, DB_USER, DB_PASS);
 		@mysql_select_db(DB_NAME) or die('Kunde inte ansluta till databasen.');		
-		$result = mysql_query('SELECT * FROM ' . DB_PREFIX . 'pizzasugen WHERE key LIMIT 1');
-		
-		print_r($result);
+		$sql = 'SELECT * FROM ' . DB_PREFIX . 'pizzasugen WHERE `key`=\''.$key.'\' LIMIT 1';
+		$result = mysql_query($sql);
+		$result = mysql_fetch_object($result);
+		$spots = $result->spots;
 		
 		if(!file_exists($file) || filemtime($file) - time() > 86400) {
 			$spots = find_spots($latitude, $longitude);
@@ -35,15 +36,19 @@
 			
 			
 			
-			/*$handle = fopen($file, 'w');
+			$handle = fopen($file, 'w');
 			$header = get_html_header();
 			$footer = get_html_footer();
-			fwrite($handle, $header . $html . $footer );*/
-		}
+			fwrite($handle, $header . $html . $footer );
+			
+			$numberofspots = count($spots);
+		} else {
+			$numberofspots = $spots;
+		} 
 		
 		mysql_close();
 		
-		$response['spots'] = count($spots);
+		$response['spots'] = $numberofspots;
 		$response['key'] = $key;
 		
 		echo json_encode($response);

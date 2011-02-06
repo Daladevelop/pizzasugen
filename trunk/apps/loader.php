@@ -3,12 +3,13 @@
 	define('GOWALLA_SECRET_KEY', 'e95feac52e744046a61fd5dacc889b3f');
 	define('FOURSQUARE_ACCESS_TOKEN', 'JB0U4S3YPMPCYB0WOU04R2FP5KWGCJJAVATS3WXCZMMPMVFX');
 	define('DEFAULT_RADIUS', 5000);
+	define('DB_TABLE', 'pizzasugen');
 	
 	define('DB_HOST', 'localhost');
 	define('DB_NAME', 'pizzasugen');
 	define('DB_USER', 'pizzasugen');
 	define('DB_PASS', 'sugenpapizza');
-	define('DB_PREFIX', 'ps_')
+	define('DB_PREFIX', 'ps_');
 	
 	require_once('libraries/spot.php');
 	require_once('libraries/iSpotProvider.php');
