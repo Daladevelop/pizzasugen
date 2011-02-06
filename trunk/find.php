@@ -8,12 +8,18 @@
 		$key = str_replace('.', '', round($latitude, 2) . round($longitude, 2));
 		$file = 'search/' . $key . '.html';
 		
+		mysql_connect(DB_HOST, DB_USER, DB_PASS);
+		@mysql_select_db(DB_NAME) or die('Kunde inte ansluta till databasen.');		
+		$result = mysql_query('SELECT * FROM ' . DB_PREFIX . 'pizzasugen WHERE key LIMIT 1');
+		
+		print_r($result);
+		
 		if(!file_exists($file) || filemtime($file) - time() > 86400) {
 			$spots = find_spots($latitude, $longitude);
 			
 			$html = '<div class="section result">';
 			
-			if (count($spots)>0) {
+			if(count($spots) > 0) {
 				$html .= 'Vi hittade ' . count($spots) . ' pizzerior i din närhet.<ul>';
 			
 				foreach($spots as $spot) {
@@ -22,17 +28,20 @@
 			
 				$html .= '</ul>';
 			} else {
-				$html .= 'Kunde inte hitta några pizzerior i din närhet. Ta en banan, och var glad.';
+				$html .= 'Kunde inte hitta några pizzerior i din närhet. Ta en banan och var glad.';
 			}
 			
 			$html .= '</div>';
 			
-			$handle = fopen($file, 'w');
+			
+			
+			/*$handle = fopen($file, 'w');
 			$header = get_html_header();
 			$footer = get_html_footer();
-			fwrite($handle, $header.$html.$footer );
-			
+			fwrite($handle, $header . $html . $footer );*/
 		}
+		
+		mysql_close();
 		
 		$response['spots'] = count($spots);
 		$response['key'] = $key;
