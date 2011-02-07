@@ -1,47 +1,63 @@
 <?php
-	function find_spots($latitude, $longitude, $radius = DEFAULT_RADIUS) {
-		$spots = array();
-		
-		$gowalla = new Gowalla($latitude, $longitude, $radius);
-		$foursquare = new Foursquare($latitude, $longitude, $radius);
-		
-		if($gowalla->getCount() > 0) {
-			$spots = array_merge($spots, $gowalla->getSpots());
-		}
-		
-		if($foursquare->getCount() > 0) {
-			$spots = array_merge($spots, $foursquare->getSpots());
-		}
-		
-		return $spots;
+function find_spots($latitude, $longitude, $radius = DEFAULT_RADIUS) {
+	$spots = array();
+	
+	$gowalla = new Gowalla($latitude, $longitude, $radius);
+	$foursquare = new Foursquare($latitude, $longitude, $radius);
+	
+	if($gowalla->getCount() > 0) {
+		$spots = array_merge($spots, $gowalla->getSpots());
 	}
 	
-	function get_html_header() {
-		$html = '
-			<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-			<html xmlns="http://www.w3.org/1999/xhtml">
-				<head>
-    				<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    				<meta name="viewport" content="width=device-width" />
-					<title>Pizzasugen</title>
-					<link rel="stylesheet" href="../styles/style.css" />
-				</head>
-			<body>
-				<h1>#Pizzasugen?</h1>
-				';
-		return $html;
+	if($foursquare->getCount() > 0) {
+		$spots = array_merge($spots, $foursquare->getSpots());
 	}
 	
-	function get_html_footer() {
-		$html = '
-			<div class="section">
-				<h2>Är du pizzasugen?</h2>
-				Skicka ett tweet med hash-taggen <strong>#pizzasugen</strong> och skicka med
-				geolocation-data så kommer du få ett svar som talar om vilka
-				pizzerior som finns i närheten.
-			</div>
-		</body>
-		</html>';
-		return $html;
-	}
-?>
+	return $spots;
+}
+
+function get_spots($key, $latitude = null, $longitude = null) {
+  
+  global $pdo;
+
+  $sql = 'SELECT * FROM `pizzasugen` WHERE `key` = ? LIMIT 1';    
+  $statement = $pdo->prepare($sql);    
+  
+  if ($statement->execute(array($key))) {
+    
+    $db_data = $statement->fetchAll();
+    
+    if (count($db_data) > 0) {
+            
+      return unserialize($db_data[0]['spot_data']);
+    } 
+  }
+  
+  if (is_numeric($latitude) && is_numeric($longitude)) {
+    $spots = find_spots($latitude, $longitude);
+                
+    $sql = 'INSERT INTO  `pizzasugen` (`key`, `spots`, `spot_data`) VALUES (?, ?, ?)';
+    $statement = $pdo->prepare($sql);
+    
+    $statement->execute(array($key, count($spots), serialize($spots)));
+    
+    return $spots;      
+  } else {
+    return array();
+  }
+}
+
+function create_key($latitude, $longitude) {
+    
+  $seed  = str_replace(".", "", $latitude . $longitude);
+  $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPRQSTUVWXYZ0123456789";
+  $key   = "";
+
+  srand($seed);
+  
+  for ($x = 0; $x < KEY_LENGTH; $x++) {
+    $key .= $chars[ rand( 0, strlen($chars) ) ];
+  }
+  
+  return $key;  
+}
