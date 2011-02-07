@@ -8,7 +8,7 @@
 	define('DB_HOST', 'localhost');
 	define('DB_NAME', 'pizzasugen');
 	define('DB_USER', 'pizzasugen');
-	define('DB_PASS', 'sugenpapizza');
+	define('DB_PASS', '9WmlWgdlT_RabaHYMWq6bd9N');
 	define('DB_PREFIX', 'ps_');
 	
 	require_once('libraries/spot.php');
