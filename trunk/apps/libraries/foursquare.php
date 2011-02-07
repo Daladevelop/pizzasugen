@@ -51,15 +51,8 @@ class Foursquare {
     
         foreach ($item->categories as $category) {
           
-          if ($category->name == "Pizza") {
-            
-            $this->spots[] = new Spot($item->name, 
-                              $item->name, 
-                              $item->location->lat, 
-                              $item->location->lng, 
-                              $item->location->distance, 
-                              "http://foursquare.com/venue/" . $item->id,
-                              $item->stats->checkinsCount);
+          if ($category->name == "Pizza") {            
+            $this->spots[] = new Spot($item->name, $item->name, $item->location->lat, $item->location->lng, $item->location->distance, "http://foursquare.com/venue/" . $item->id, $item->stats->checkinsCount);
                               
             break;
           }   
