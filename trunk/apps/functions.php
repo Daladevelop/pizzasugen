@@ -49,15 +49,7 @@ function get_spots($key, $latitude = null, $longitude = null) {
 
 function create_key($latitude, $longitude) {
     
-  $seed  = str_replace(".", "", $latitude . $longitude);
-  $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPRQSTUVWXYZ0123456789";
-  $key   = "";
+  $input  = str_replace(".", "", $latitude . $longitude);
 
-  mt_srand($seed);
-  
-  for ($x = 0; $x < KEY_LENGTH; $x++) {
-    $key .= $chars[ mt_rand( 0, strlen($chars) ) ];
-  }
-  
-  return $key;  
+  return base_convert($input, 10, 36);  
 }
