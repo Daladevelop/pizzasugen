@@ -53,10 +53,10 @@ function create_key($latitude, $longitude) {
   $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPRQSTUVWXYZ0123456789";
   $key   = "";
 
-  srand($seed);
+  mt_srand($seed);
   
   for ($x = 0; $x < KEY_LENGTH; $x++) {
-    $key .= $chars[ rand( 0, strlen($chars) ) ];
+    $key .= $chars[ mt_rand( 0, strlen($chars) ) ];
   }
   
   return $key;  
