@@ -36,7 +36,7 @@ function get_spots($key, $latitude = null, $longitude = null) {
   if (is_numeric($latitude) && is_numeric($longitude)) {
     $spots = find_spots($latitude, $longitude);
                 
-    $sql = 'INSERT INTO  `pizzasugen` (`key`, `spots`, `spot_data`) VALUES (?, ?, ?)';
+    $sql = 'INSERT INTO  `pizzasugen` (`key`, `spots`, `spot_data`, `time`) VALUES (?, ?, ?, CURRENT_TIMESTAMP)';
     $statement = $pdo->prepare($sql);
     
     $statement->execute(array($key, count($spots), serialize($spots)));
