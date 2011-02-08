@@ -29,19 +29,27 @@ function get_spots($key, $latitude = null, $longitude = null) {
     
     if (count($db_data) > 0) {
             
-      return unserialize($db_data[0]['spot_data']);
+      return array(
+        'latitude' => $db_data[0]['latitude'], 
+        'longitude' => $db_data[0]['longitude'],
+        'spot_data' => unserialize($db_data[0]['spot_data'])
+      );
     } 
   }
   
   if (is_numeric($latitude) && is_numeric($longitude)) {
     $spots = find_spots($latitude, $longitude);
                 
-    $sql = 'INSERT INTO  `pizzasugen` (`key`, `spots`, `spot_data`, `time`) VALUES (?, ?, ?, CURRENT_TIMESTAMP)';
+    $sql = 'INSERT INTO  `pizzasugen` (`key`, `spots`, `spot_data`, `latitude`, `longitude`, `time`) VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP)';
     $statement = $pdo->prepare($sql);
     
-    $statement->execute(array($key, count($spots), serialize($spots)));
+    $statement->execute(array($key, count($spots), serialize($spots), $latitude, $longitude));
     
-    return $spots;      
+    return array(
+        'latitude' => $latitude, 
+        'longitude' => $longitude,
+        'spot_data' => $spots
+    );      
   } else {
     return array();
   }
