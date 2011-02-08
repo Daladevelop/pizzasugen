@@ -20,6 +20,7 @@ body {
 .section.result {
 	border: 1px solid #000;
 	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
 	border-radius: 10px;
 	padding: 10px;
 	background: rgba(149, 205, 254, 0.3);
@@ -29,7 +30,50 @@ body {
 	padding-left: 16px;
 }
 
-#map_canvas {
+.js #map_canvas {
   width: 100%;
   height: 350px;
+}
+
+#geo {
+  display: none;
+}
+.geolocation #geo {
+  display: block;
+} 
+
+#error {
+  background: rgba(254, 149, 149, 0.3);
+  border: 1px solid #d00; 
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  padding: 4px;
+  margin: 10px 0;
+}
+.hidden { display: none; }
+
+#searching {
+  padding: 2px;
+  margin: 10px 0;
+  vertical-align: middle;
+  text-align: middle;
+}
+#findme {
+  border: 1px solid #000;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  padding: 10px;
+  background: rgba(149, 205, 254, 0.3);
+  display: block;
+  width: 75px;
+  height: 25px;
+  margin: 10px auto;
+  text-align: center;
+  color: #222;
+  text-decoration: none;
+}
+#findme:hover {
+  background: rgba(149, 205, 254, 0.8);  
 }

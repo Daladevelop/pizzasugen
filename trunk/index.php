@@ -3,12 +3,18 @@
 ?>
 
 <!DOCTYPE html>
-<html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Pizzasugen</title>
-    <link rel="stylesheet" href="styles/style.css" />
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>Pizzasugen</title>
+  <link rel="stylesheet" href="styles/style.css" />
+  <script type="text/javascript" src="js/modernizr-1.6.min.js"></script>
 </head>
 
 <body>
@@ -27,6 +33,8 @@
       #daladevelop, <a href="http://twitter.com/mikaeljorhult">@mikaeljorhult</a>, <a href="http://twitter.com/synvila">@synvila</a>, <a href="http://twitter.com/rickard2">@rickard2</a>
     </p>    
   </div>
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.5.min.js"></script>
+  <script type="text/javascript" src="js/geo.js"></script> 
 </body>
 
 </html>
