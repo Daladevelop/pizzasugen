@@ -12,16 +12,16 @@
   <?php endforeach; // spots as spot ?> 
   
   </ul>
-  
-  <p>Du har angett att du befinner dig på <?php echo $spots['latitude'] . "," . $spots['longitude'] ?></p> 
-
-  <div id="map_canvas"></div>
-   
+     
   <?php else : // count spots ?>
    
   <p>Kunde inte hitta några pizzerior i din närhet. Ta en banan och var glad.</p>
   
   <?php endif; // count spots ?>
+  
+  <p>Du har angett att du befinner dig på <?php echo $spots['latitude'] . "," . $spots['longitude'] ?></p> 
+
+  <div id="map_canvas"></div>  
   
 </div>
 
