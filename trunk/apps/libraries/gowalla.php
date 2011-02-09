@@ -40,7 +40,8 @@
 			if(count($response->spots) > 0) {
 				foreach($response->spots as $spot) {
 					if($spot->spot_categories[0]->name == 'Pizza') {
-						$spots[] = new Spot($spot->name, $spot->description, $spot->lat, $spot->lng, $spot->radius_meters, 'http://gowalla.com' . $spot->url, $spot->checkins_count);
+					  $distance = distance($latitude, $longitude, $spot->lat, $spot->lng);
+						$spots[] = new Spot($spot->name, $spot->description, $spot->lat, $spot->lng, $distance, 'http://gowalla.com' . $spot->url, $spot->checkins_count);
 					}
 				}
 			}

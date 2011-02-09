@@ -28,12 +28,20 @@ function get_spots($key, $latitude = null, $longitude = null) {
     $db_data = $statement->fetchAll();
     
     if (count($db_data) > 0) {
-            
-      return array(
-        'latitude' => $db_data[0]['latitude'], 
-        'longitude' => $db_data[0]['longitude'],
-        'spot_data' => unserialize($db_data[0]['spot_data'])
-      );
+      
+      if (strtotime($db_data[0]['time']) < (time() - CACHE_LIFETIME)) {
+          
+        $sql = "DELETE FROM `pizzasugen` WHERE `key` = ?";
+        $statement = $pdo->prepare($sql);
+        $statement->execute(array($key));
+        
+      } else {
+        return array(
+          'latitude' => $db_data[0]['latitude'], 
+          'longitude' => $db_data[0]['longitude'],
+          'spot_data' => unserialize($db_data[0]['spot_data'])
+        );       
+      }            
     } 
   }
   
@@ -60,4 +68,23 @@ function create_key($latitude, $longitude) {
   $input  = str_replace(".", "", $latitude . $longitude);
 
   return base_convert($input, 10, 36);  
+}
+
+/**
+ * @link http://www.codewalkers.com/c/a/Miscellaneous-Code/Calculate-Distance-Between-Two-Points/
+ * @param float $lat1 
+ * @param float $lon1
+ * @param float $lat2
+ * @param float $lon2
+ * @return int Distance rounded
+ */
+function distance($lat1, $lon1, $lat2, $lon2) { 
+
+  $theta = $lon1 - $lon2; 
+  $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) + cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta)); 
+  $dist = acos($dist); 
+  $dist = rad2deg($dist); 
+  $meters = $dist * 111189.57696; // 60 * 1.1515 * 1.609344 * 1000
+  
+  return round($meters);
 }

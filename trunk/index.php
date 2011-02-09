@@ -1,4 +1,11 @@
 <?php
+/**
+ * Pizzasugen main index file
+ * 
+ * @todo design
+ * @todo add more data sources
+ */
+
 	require_once('apps/loader.php');
 ?>
 

@@ -4,6 +4,7 @@
 	define('FOURSQUARE_ACCESS_TOKEN', 'JB0U4S3YPMPCYB0WOU04R2FP5KWGCJJAVATS3WXCZMMPMVFX');
 	define('DEFAULT_RADIUS', 5000);
   define('KEY_LENGTH', 8);
+  define('CACHE_LIFETIME', 60*60*4); // Save items in DB max 4h 
 	
 	define('DB_USER', 'pizzasugen');
 	define('DB_PASS', '9WmlWgdlT_RabaHYMWq6bd9N');
