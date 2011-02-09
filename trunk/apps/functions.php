@@ -29,7 +29,8 @@ function get_spots($key, $latitude = null, $longitude = null) {
     
     if (count($db_data) > 0) {
       
-      if (strtotime($db_data[0]['time']) < (time() - CACHE_LIFETIME)) {
+      // Only remove the item if lat/lng is provided so that we can do a new search
+      if (strtotime($db_data[0]['time']) < (time() - CACHE_LIFETIME) && is_numeric($latitude) && is_numeric($longitude)) {
           
         $sql = "DELETE FROM `pizzasugen` WHERE `key` = ?";
         $statement = $pdo->prepare($sql);
