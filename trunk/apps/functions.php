@@ -2,6 +2,7 @@
 function find_spots($latitude, $longitude, $radius = DEFAULT_RADIUS) {
 	$spots = array();
 	
+	$pizzanu = new PizzaNu($latitude, $longitude, $radius);
 	$gowalla = new Gowalla($latitude, $longitude, $radius);
 	$foursquare = new Foursquare($latitude, $longitude, $radius);
 	
@@ -11,6 +12,10 @@ function find_spots($latitude, $longitude, $radius = DEFAULT_RADIUS) {
 	
 	if($foursquare->getCount() > 0) {
 		$spots = array_merge($spots, $foursquare->getSpots());
+	}
+	
+	if ($pizzanu->getCount() > 0) {
+		$spots = array_merge($spots, $pizzanu->getSpots());
 	}
 	
 	return $spots;
