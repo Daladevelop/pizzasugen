@@ -91,7 +91,7 @@ class PizzaNu {
     }
 	
 	foreach ($data['restaurants']['restaurant'] as $restaurant) {
-		$this->spots[] = new Spot($restaurant['@attributes']['name'], $restaurant['@attributes']['name'], $restaurant['coordinates']['latitude'], $restaurant['coordinates']['longitude'], $restaurant['distance'], "http://pizza.nu?view=pizzeriaInfo&idPizzeria=" . $restaurant['@attributes']['id'], 0);
+		$this->spots[] = new Spot($restaurant['@attributes']['name'], $restaurant['@attributes']['name'], $restaurant['coordinates']['latitude'], $restaurant['coordinates']['longitude'], $restaurant['distance'], "http://pizza.nu/?sida=meny&action=setPizzeria&pizzeriaId=" . $restaurant['@attributes']['id'], 0);
 	}	
   }
 }
